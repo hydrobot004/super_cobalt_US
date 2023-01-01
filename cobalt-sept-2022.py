@@ -26,7 +26,7 @@ df_participants.dropna(inplace=True)
 Countries = df['Countries'].unique().tolist()
 Metals_GW = df['Metals_GW'].unique().tolist()
 
-weight_selection = st.slider('Metal Value:',
+weight_selection = st.slider('Metals_Value:',
                         min_value= min(Metals_GW),
                         max_value= max(Metals_GW),
                         value= (min(Metals_GW), max(Metals_GW)))
