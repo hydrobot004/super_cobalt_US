@@ -14,38 +14,48 @@ sheet_name = 'DATA'
 df = pd.read_excel(excel_file,
                     sheet_name=sheet_name,
                     usecols='A:C',
-                    header=1)
+                    header=0)
             
 df_participants = pd.read_excel(excel_file,
                                 sheet_name= sheet_name,
                                 usecols='A:C',
-                                header=1)
+                                header=0)
 df_participants.dropna(inplace=True)
 
 # - - - STREAMLIT SELECTION
-Countries = df['Cobalt Producing Countries:'].unique().tolist()
-Metals_GW = df['Metals GW:'].unique().tolist()
+Countries = df['Countries'].unique().tolist()
+Metals_GW = df['Metals_GW'].unique().tolist()
 
-weight_selection = st.slider('Metals_Value:',
+weight_selection = st.slider('Metals_Gross Weight, in MT:',
                         min_value= min(Metals_GW),
                         max_value= max(Metals_GW),
                         value= (min(Metals_GW), max(Metals_GW)))
 
+country_selection = st.multiselect('Country',
+                                    Countries,
+                                    default= Countries)  
+
+
+# --- FILTER DATAFRAME BASED ON SELECTION
+mask = (df['Metals_GW'].between(*weight_selection)) & (df['Countries'].isin(country_selection))
+number_of_result = df[mask].shape[0]
+st.markdown(f'*Availible Results: {number_of_result}*')
+
+# --- GROUP DATAFRAME AFTER SELECTION
+df_grouped = df[mask].groupby(by=['Metal_Value']).count()[['Metals_GW']] 
+df_grouped = df_grouped.rename(columns={'Metals_GW': 'Metals_GW'})
+df_grouped = df_grouped.reset_index()
 
 
 
 
 
-
-
-
-
-st.dataframe(df)
-st.dataframe(df_participants)
+#  st.dataframe(df)
+#  st.dataframe(df_participants)
 
 pie_chart = px.pie(df_participants,
-                    title='Countries Imported',
-                    values='Metals_Value',
+                    title='Countries Value Imported',
+                    values='Metal_Value',
                     names='Countries')
 st.plotly_chart(pie_chart)
 
