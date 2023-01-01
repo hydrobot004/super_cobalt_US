@@ -24,12 +24,12 @@ df_participants.dropna(inplace=True)
 
 # - - - STREAMLIT SELECTION
 Countries = df['Countries'].unique().tolist()
-Metal_GW = df['Metal_GW'].unique().tolist()
+Metals_GW = df['Metals_GW'].unique().tolist()
 
 weight_selection = st.slider('Metal Value:',
-                        min_value= min(Metal_GW),
-                        max_value= max(Metal_GW),
-                        value= (min(Metal_GW), max(Metal_GW)))
+                        min_value= min(Metals_GW),
+                        max_value= max(Metals_GW),
+                        value= (min(Metals_GW), max(Metals_GW)))
 
 
 
