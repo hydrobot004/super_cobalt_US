@@ -1,2 +1,3 @@
 # super_cobalt_US
-Cobalt Imports to the US and value
+September Cobalt Imports to the US and their value
+Source: US Geological Survey
