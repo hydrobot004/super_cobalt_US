@@ -23,7 +23,7 @@ df_participants = pd.read_excel(excel_file,
 df_participants.dropna(inplace=True)
 
 # - - - STREAMLIT SELECTION
-Countries = df['Countries:'].unique().tolist()
+Countries = df['Cobalt Producing Countries:'].unique().tolist()
 Metals_GW = df['Metals GW:'].unique().tolist()
 
 weight_selection = st.slider('Metals_Value:',
