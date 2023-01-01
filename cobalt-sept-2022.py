@@ -19,12 +19,12 @@ df = pd.read_excel(excel_file,
 df_participants = pd.read_excel(excel_file,
                                 sheet_name= sheet_name,
                                 usecols='A:C',
-                                header=0)
+                                header=1)
 df_participants.dropna(inplace=True)
 
 # - - - STREAMLIT SELECTION
 Countries = df['Countries'].unique().tolist()
-Metals_GW = df['Metals_GW'].unique().tolist()
+Metals_GW = df['Metals GW'].unique().tolist()
 
 weight_selection = st.slider('Metals_Value:',
                         min_value= min(Metals_GW),
@@ -45,7 +45,7 @@ st.dataframe(df_participants)
 
 pie_chart = px.pie(df_participants,
                     title='Countries Imported',
-                    values='Metal Value',
+                    values='Metals_Value',
                     names='Countries')
 st.plotly_chart(pie_chart)
 
