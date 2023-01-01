@@ -23,13 +23,13 @@ df_participants = pd.read_excel(excel_file,
 df_participants.dropna(inplace=True)
 
 # - - - STREAMLIT SELECTION
-department = df['Department'].unique().tolist()
-ages = df['Age'].unique().tolist()
+Countries = df['Countries'].unique().tolist()
+Metal_Value = df['Metal Value'].unique().tolist()
 
-age_selection = st.slider('Age:',
-                        min_value= min(ages),
-                        max_value= max(ages),
-                        value= (min(ages), max(ages)))
+age_selection = st.slider('Metal Value:',
+                        min_value= min(Metal_Value),
+                        max_value= max(Metal_Value),
+                        value= (min(Metal_Value), max(Metal_Value)))
 
 
 
