@@ -54,7 +54,7 @@ df_grouped = df_grouped.reset_index()
 #  st.dataframe(df_participants)
 
 pie_chart = px.pie(df_participants,
-                    title='Countries Imported Cobalt Valued. September 2022',
+                    title='Countries Imported Cobalt Valued, September 2022',
                     values='Metal_Value',
                     names='Countries')
 st.plotly_chart(pie_chart)
